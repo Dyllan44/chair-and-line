@@ -1,0 +1,36 @@
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .hero-media img { animation: settle-photo 1.25s var(--ease) both; }
+  .hero h1 > span { overflow: clip; padding-bottom: .19em; margin-bottom: -.19em; }
+  .hero h1 > span > span { display: block; animation: set-type .76s var(--ease) .1s both; }
+  .hero h1 > span + span > span { animation-delay: .19s; }
+  .hero-button:not(:focus) { animation: ink-in .56s var(--ease) .3s both; }
+
+  .button, .cut-filters button, .service-mark {
+    transition: transform .25s var(--ease), background-color .22s ease, color .22s ease;
+  }
+  .button:active:not(:disabled), .cut-filters button:active { transform: translateY(2px); }
+  .cut-photo img { transition: transform .65s var(--ease); }
+  .cut-card:focus-within .cut-photo img { transform: scale(1.045); }
+  .faq details[open] p, .appointment-result:not([hidden]) { animation: ink-in .32s var(--ease); }
+  .section-heading[data-printed] h2::before, .section-heading[data-printed] h2::after {
+    animation: rule-in .65s var(--ease);
+  }
+  .section-heading[data-printed] h2::after { transform-origin: left; }
+  .centred[data-printed] h2::before { transform-origin: right; }
+
+  @media (max-width: 760px) {
+    .site-header[data-menu-ready] .site-nav:not([hidden]) { animation: ink-in .24s var(--ease); }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .button:hover:not(:disabled) { transform: translateY(-2px); }
+  .cut-card:hover .cut-photo img { transform: scale(1.045); }
+  .services-list a:hover .service-mark { transform: rotate(9deg); }
+}
+
+@keyframes settle-photo { from { transform: scale(1.055); opacity: .7; } }
+@keyframes set-type { from { transform: translateY(108%); } }
+@keyframes ink-in { from { opacity: .52; transform: translateY(.55rem); } }
+@keyframes rule-in { from { transform: scaleX(.18); opacity: .55; } }

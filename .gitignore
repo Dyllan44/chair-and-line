@@ -1,0 +1,5 @@
+dist/
+.env
+.env.*
+Thumbs.db
+.DS_Store
