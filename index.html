@@ -7,6 +7,14 @@
   <meta name="theme-color" content="#f3e8d4">
   <title>Chair &amp; Line — Barbershop</title>
   <link rel="icon" href="images/brand-mark.svg" type="image/svg+xml">
+  <script>
+    // Opt in to scroll reveals before first paint. Falls back to the static page if motion.js never starts.
+    (function (root) {
+      if (!window.matchMedia || !matchMedia("(prefers-reduced-motion: no-preference)").matches || !("IntersectionObserver" in window)) return;
+      root.classList.add("motion");
+      setTimeout(function () { if (!root.hasAttribute("data-motion-ready")) root.classList.remove("motion"); }, 3000);
+    })(document.documentElement);
+  </script>
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/home.css">
   <link rel="stylesheet" href="styles/motion.css">
@@ -39,8 +47,11 @@
         <img src="images/barber-at-the-chair-1120.jpg" srcset="images/barber-at-the-chair-640.jpg 640w, images/barber-at-the-chair-1120.jpg 1120w, images/barber-at-the-chair-1672.jpg 1672w" sizes="100vw" width="1672" height="941" fetchpriority="high" alt="A barber combing a customer’s hair in a warmly lit shop">
       </div>
       <div class="shell hero-copy">
-        <h1 id="hero-title"><span><span>A good cut.</span></span> <span><span>Every time.</span></span></h1>
-        <a class="button hero-button" href="#appointment">Request an appointment</a>
+        <div class="barber-pole" aria-hidden="true" data-pole><span class="pole-glass"><span class="pole-stripes"></span></span></div>
+        <div class="hero-text">
+          <h1 id="hero-title"><span><span>A good cut.</span></span> <span><span>Every time.</span></span></h1>
+          <a class="button hero-button" href="#appointment">Request an appointment</a>
+        </div>
       </div>
     </section>
 
@@ -55,16 +66,16 @@
           <img src="images/scissors-and-comb-840.jpg" srcset="images/scissors-and-comb-420.jpg 420w, images/scissors-and-comb-840.jpg 840w" sizes="(max-width: 660px) 92vw, 40vw" width="840" height="1050" loading="lazy" decoding="async" alt="Silver barber shears and a comb on a folded brown towel">
         </div>
         <ul class="services-list">
-          <li><a id="classic-cut" href="#appointment" data-service="classic-cut">
+          <li data-reveal="left"><a id="classic-cut" href="#appointment" data-service="classic-cut">
             <span><strong>Classic cut</strong><small>A timeless cut, tailored to how you wear it.</small></span><span class="service-mark" aria-hidden="true"></span><span class="sr-only">Select this service</span>
           </a></li>
-          <li><a id="skin-fade" href="#appointment" data-service="skin-fade">
+          <li data-reveal="left"><a id="skin-fade" href="#appointment" data-service="skin-fade">
             <span><strong>Skin fade</strong><small>A clean, close fade with a defined shape on top.</small></span><span class="service-mark" aria-hidden="true"></span><span class="sr-only">Select this service</span>
           </a></li>
-          <li><a id="beard-trim" href="#appointment" data-service="beard-trim">
+          <li data-reveal="left"><a id="beard-trim" href="#appointment" data-service="beard-trim">
             <span><strong>Beard trim</strong><small>Tidy the edges, shape the beard and keep the length you like.</small></span><span class="service-mark" aria-hidden="true"></span><span class="sr-only">Select this service</span>
           </a></li>
-          <li><a id="cut-and-beard" href="#appointment" data-service="cut-and-beard">
+          <li data-reveal="left"><a id="cut-and-beard" href="#appointment" data-service="cut-and-beard">
             <span><strong>Cut &amp; beard</strong><small>A haircut and beard trim in one sitting.</small></span><span class="service-mark" aria-hidden="true"></span><span class="sr-only">Select this service</span>
           </a></li>
         </ul>
@@ -79,10 +90,10 @@
           <a class="button button-outline" href="#approach">Our approach</a>
         </div>
         <div class="story-photos">
-          <div class="photo print print-main" data-reveal="photo">
+          <div class="photo print print-main" data-reveal="drop">
             <img src="images/consultation-in-the-chair-840.jpg" srcset="images/consultation-in-the-chair-420.jpg 420w, images/consultation-in-the-chair-840.jpg 840w" sizes="(max-width: 760px) 81vw, 45vw" width="840" height="560" loading="lazy" decoding="async" alt="A barber listening to a customer in the chair">
           </div>
-          <div class="photo print print-detail" data-reveal="photo">
+          <div class="photo print print-detail" data-reveal="drop">
             <img src="images/scissor-over-comb-840.jpg" srcset="images/scissor-over-comb-420.jpg 420w, images/scissor-over-comb-840.jpg 840w" sizes="(max-width: 760px) 58vw, 29vw" width="840" height="560" loading="lazy" decoding="async" alt="Scissor-over-comb work on the side of a haircut">
           </div>
         </div>
@@ -124,17 +135,21 @@
       <div class="shell">
         <div class="section-heading centred" data-reveal><h2 id="barbers-title">Meet the barbers</h2></div>
         <figure class="team-portraits">
-          <div class="photo" data-reveal="photo"><img src="images/team-portrait-beanie-840.jpg" srcset="images/team-portrait-beanie-420.jpg 420w, images/team-portrait-beanie-840.jpg 840w" sizes="(max-width: 760px) 92vw, 48vw" width="840" height="1050" loading="lazy" decoding="async" alt="A smiling barber in a black beanie and apron"></div>
-          <div class="photo" data-reveal="photo"><img src="images/team-portrait-window-light-840.jpg" srcset="images/team-portrait-window-light-420.jpg 420w, images/team-portrait-window-light-840.jpg 840w" sizes="(max-width: 760px) 92vw, 48vw" width="840" height="1050" loading="lazy" decoding="async" alt="A barber with tied-back hair standing by the shop window"></div>
+          <div class="photo" data-reveal="photo" data-from="left"><img src="images/team-portrait-beanie-840.jpg" srcset="images/team-portrait-beanie-420.jpg 420w, images/team-portrait-beanie-840.jpg 840w" sizes="(max-width: 760px) 92vw, 48vw" width="840" height="1050" loading="lazy" decoding="async" alt="A smiling barber in a black beanie and apron"></div>
+          <div class="photo" data-reveal="photo" data-from="right"><img src="images/team-portrait-window-light-840.jpg" srcset="images/team-portrait-window-light-420.jpg 420w, images/team-portrait-window-light-840.jpg 840w" sizes="(max-width: 760px) 92vw, 48vw" width="840" height="1050" loading="lazy" decoding="async" alt="A barber with tied-back hair standing by the shop window"></div>
           <figcaption>Illustrative team imagery</figcaption>
         </figure>
       </div>
     </section>
 
+    <div class="ticker" aria-hidden="true" data-marquee>
+      <div class="marquee-track"><div class="marquee-group"><span>Classic cut</span><span>Skin fade</span><span>Beard trim</span><span>Cut &amp; beard</span><span>A good cut. Every time.</span></div></div>
+    </div>
+
     <section class="section process-section" id="approach" tabindex="-1" aria-labelledby="process-title">
       <div class="shell">
         <div class="section-heading centred" data-reveal><h2 id="process-title">From chair to finish</h2></div>
-        <ol class="process-steps">
+        <ol class="process-steps" data-flow>
           <li data-reveal><svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 32 32"><use href="#icon-talk"></use></svg><h3>Talk</h3><p>Tell us how you wear your hair, what you want to keep, and what you’d like to change.</p></li>
           <li data-reveal><svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 32 32"><use href="#icon-cut"></use></svg><h3>Cut</h3><p>Shape the cut around your hair, your routine and the look we’ve agreed on.</p></li>
           <li data-reveal><svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 32 32"><use href="#icon-finish"></use></svg><h3>Finish</h3><p>See how it sits, make any final adjustments and talk through styling.</p></li>
@@ -145,7 +160,7 @@
     <section class="section shell" id="shop" tabindex="-1" aria-labelledby="shop-title">
       <div class="section-heading centred" data-reveal><h2 id="shop-title">Inside the shop</h2></div>
       <div class="shop-gallery">
-        <div class="photo shop-main" data-reveal="photo"><img src="images/shop-interior-1200.jpg" srcset="images/shop-interior-640.jpg 640w, images/shop-interior-1200.jpg 1200w" sizes="(max-width: 1300px) 92vw, 1152px" width="1200" height="675" loading="lazy" decoding="async" alt="A black leather barber chair beside timber cabinets and cream tile"></div>
+        <div class="photo shop-main" data-reveal="photo" data-from="left"><img src="images/shop-interior-1200.jpg" srcset="images/shop-interior-640.jpg 640w, images/shop-interior-1200.jpg 1200w" sizes="(max-width: 1300px) 92vw, 1152px" width="1200" height="675" loading="lazy" decoding="async" alt="A black leather barber chair beside timber cabinets and cream tile"></div>
         <div class="photo shop-detail" data-reveal="photo"><img src="images/brush-and-grooming-products-840.jpg" srcset="images/brush-and-grooming-products-420.jpg 420w, images/brush-and-grooming-products-840.jpg 840w" sizes="46vw" width="840" height="560" loading="lazy" decoding="async" alt="A shaving brush and amber bottles on a timber shelf"></div>
         <div class="photo shop-detail" data-reveal="photo"><img src="images/towel-on-leather-chair-840.jpg" srcset="images/towel-on-leather-chair-420.jpg 420w, images/towel-on-leather-chair-840.jpg 840w" sizes="46vw" width="840" height="560" loading="lazy" decoding="async" alt="A striped towel draped over a leather chair arm"></div>
       </div>
@@ -162,12 +177,12 @@
       </div>
     </section>
 
-    <section class="closing" aria-labelledby="closing-title">
+    <section class="closing" aria-labelledby="closing-title" data-reveal="line">
       <div class="closing-media">
         <img src="images/empty-chair-appointment-1120.jpg" srcset="images/empty-chair-appointment-640.jpg 640w, images/empty-chair-appointment-1120.jpg 1120w, images/empty-chair-appointment-1672.jpg 1672w" sizes="100vw" width="1672" height="941" loading="lazy" decoding="async" alt="An empty black leather barber chair under warm pendant lights">
       </div>
       <div class="shell closing-copy" data-reveal>
-        <h2 id="closing-title">Take a seat.</h2>
+        <h2 id="closing-title"><span class="line"><span>Take a seat.</span></span></h2>
         <a class="button" href="#appointment">Request an appointment</a>
       </div>
     </section>
@@ -213,6 +228,8 @@
       </div>
     </section>
   </main>
+
+  <a class="button float-cta" href="#appointment" data-float-cta hidden>Request an appointment</a>
 
   <footer class="site-footer">
     <div class="shell footer-inner">

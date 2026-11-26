@@ -32,6 +32,11 @@
     service.value = choice.dataset.service;
     style.value = choice.dataset.style ?? '';
     updateDetails();
+    for (const field of choice.dataset.style ? [service, style] : [service]) {
+      field.classList.remove('is-chosen');
+      void field.offsetWidth;
+      field.classList.add('is-chosen');
+    }
   });
 
   form.querySelector('fieldset').disabled = false;
@@ -61,8 +66,10 @@
 
     if (!motion.matches || typeof Element.prototype.animate !== 'function') return;
     shown.forEach((card, index) => {
-      card.animate([{ opacity: .65, translate: '0 .35rem' }, { opacity: 1, translate: '0 0' }],
-        { duration: 270, delay: index * 45, easing: 'ease-out' });
+      card.animate([
+        { opacity: 0, translate: '0 1.5rem', scale: .96 },
+        { opacity: 1, translate: '0 0', scale: 1 }
+      ], { duration: 520, delay: index * 80, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' });
     });
   });
 
